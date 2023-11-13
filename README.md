@@ -1,7 +1,7 @@
 # flyio
 
 ## Feature
-![CurrentState](Flyio.png)
+The current state of the app looks like: ![CurrentState](Flyio.png)
 
 ## TODO
 - [ ] Refactor the `floatingNavigationButtons`
