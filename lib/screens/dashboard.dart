@@ -16,26 +16,26 @@ class Dashboard extends StatelessWidget {
 
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-            BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            ),
-            BottomNavigationBarItem(
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Transactions',
-            ),
-            BottomNavigationBarItem(
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.book),
             label: 'Learn',
-            ),
+          ),
         ],
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton.extended(
-              onPressed: () {}, // TODO: Handle Receive Money button press
-              label: const Text('Receive Money'),
+            onPressed: () {}, // TODO: Handle Receive Money button press
+            label: const Text('Receive Money'),
             backgroundColor: Colors.black,
             icon: const Icon(Icons.arrow_downward),
           ),
@@ -49,6 +49,7 @@ class Dashboard extends StatelessWidget {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterTop,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
     );
   }
 }
@@ -105,67 +106,114 @@ class WalletRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.orangeAccent,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 3, // 1/3 of the screen
+      child: Stack(
         children: [
-          Container(
-            margin: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontSize: 12),
-                ),
-                Text(
-                  balance,
-                  style: const TextStyle(fontSize: 30),
-                ),
-                GestureDetector(
-                  onTap: toggleVisibility,
-                  child: const Icon(Icons.remove_red_eye),
-                ),
-              ],
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 400,
+            child: Container(
+              margin: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.orangeAccent,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                        Text(
+                          balance,
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                        GestureDetector(
+                          onTap: toggleVisibility,
+                          child: const Icon(Icons.remove_red_eye),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black,
+                              ),
+                              child: Text(
+                                button1Text,
+                                style: const TextStyle(color: Colors.white),
+                              ),),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black,
+                              ),
+                              child: Text(
+                                button2Text,
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(8),
-            alignment: Alignment.center,
-            child: Column(
+          const Positioned(
+            bottom: 16,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                        ),
-                        child: Text(
-                          button1Text,
-                          style: const TextStyle(color: Colors.white),
-                        ),),
-                    ElevatedButton(
-                        onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                      ),
-                        child: Text(
-                            button2Text,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                    )
-                  ],
-                )
+                CircleIndicator(isSelected: true),
+                SizedBox(width: 8),
+                CircleIndicator(isSelected: true),
+                SizedBox(width: 8),
+                CircleIndicator(isSelected: true),
               ],
             ),
           )
         ],
-        ),
+      ),
     );
-  }}
+  }
+}
+
+class CircleIndicator extends StatelessWidget {
+  final bool isSelected;
+
+  const CircleIndicator({super.key, required this.isSelected});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 10,
+      height: 10,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: isSelected ? Colors.black : Colors.white,
+      ),
+    );
+  }
+}
