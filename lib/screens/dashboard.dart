@@ -14,9 +14,12 @@ class Dashboard extends StatelessWidget {
         title: const Text('Hi, GhostMac 🚀'),
         centerTitle: false,
       ),
-      body: Center(
-        child: Text("Random number is: ${getRandomNumber()}")
+      body: const Row(
+        children: [
+          
+        ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         items: const [
             BottomNavigationBarItem(
