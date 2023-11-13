@@ -1,41 +1,18 @@
 import 'package:flutter/material.dart';
+import 'screens/dashboard.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
+void main() => runApp(const FlyioApp());
+
+class FlyioApp extends StatelessWidget {
+  const FlyioApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Fly.io 🚀',
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepOrange,
-          foregroundColor: Colors.black87,
-          title: const Text('Hi, GhostMac 🚀'),
-          centerTitle: false,
-        ),
-        body: const Center(
-          child: Text.rich(
-            TextSpan(
-              text: "Welcome to Fly.io!",
-              children: [
-                TextSpan(
-                  text: " We cherish our customers",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextSpan(
-                  text: " Please patronize us today!",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.blueAccent,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
+      themeMode: ThemeMode.system,
+      home: Dashboard(),
+    );
+  }
 }
