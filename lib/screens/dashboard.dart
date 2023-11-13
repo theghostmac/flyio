@@ -17,8 +17,21 @@ class Dashboard extends StatelessWidget {
       body: Center(
         child: Text("Random number is: ${getRandomNumber()}")
       ),
-      bottomNavigationBar: const SafeArea(
-        child: Icon(Icons.rocket_launch),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+            BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Transactions',
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Learn',
+            ),
+        ],
       ),
     );
   }
