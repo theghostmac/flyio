@@ -31,8 +31,24 @@ class Dashboard extends StatelessWidget {
         ],
       ),
       floatingActionButton: Column(
-        
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+              onPressed: () {}, // TODO: Handle Receive Money button press
+              label: const Text('Receive Money'),
+            backgroundColor: Colors.black,
+            icon: const Icon(Icons.arrow_downward),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton.extended(
+            onPressed: () {}, // TODO: Handle Send Money button press
+            label: const Text('Send Money'),
+            backgroundColor: Colors.black,
+            icon: const Icon(Icons.arrow_upward),
+          ),
+        ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterTop,
     );
   }
 }
